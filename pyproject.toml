@@ -1,0 +1,82 @@
+# -*- coding: utf-8 -*-
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cfd-y-plus-calculator"
+version = "1.0.0"
+description = "CFD y+ 計算工具 - 用於評估邊界層網格"
+readme = "README.md"
+requires-python = ">=3.14"
+license = {text = "MIT"}
+authors = [
+    {name = "CFD Tools", email = "info@cfdtools.dev"}
+]
+
+dependencies = [
+    "PySide6>=6.10.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cfd_y_plus"]
+
+[tool.pytest.ini_options]
+# 強制 UTF-8 編碼用於測試
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+# 設定編碼
+addopts = "--tb=short -v"
+
+[tool.black]
+line-length = 100
+target-version = ["py314"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  \.git
+  | \.venv314
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_mode = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 100
+skip_gitignore = true
+
+[tool.pylint.messages_control]
+disable = [
+    "C0330", "C0326",  # bad-whitespace
+    "R0913",           # too-many-arguments
+]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.mypy]
+python_version = "3.14"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+
+# 編碼相關設定
+[tool.poetry]
+# UTF-8 設定注釋：此專案所有文字文件一律 UTF-8 編碼
+encoding = "utf-8"
