@@ -319,7 +319,38 @@ project/
 
 ---
 
-## 📚 參考文獻
+## � 自動發布系統
+
+此專案配備了完整的自動發布系統，可自動執行測試、Lint、版本管理、提交和 GitHub 推送。
+
+### 快速開始
+
+```bash
+# Windows (PowerShell)
+.\.venv314\Scripts\Activate.ps1
+.\release.ps1
+
+# Windows (批處理)
+release.bat
+
+# 任何平台 (Python)
+uv run python release.py
+```
+
+### 版本管理規則
+
+遵循 **Semantic Versioning**：
+- `fix:` → PATCH 版本 (v1.0.0 → v1.0.1)
+- `feat:` → MINOR 版本 (v1.0.0 → v1.1.0)
+- `breaking:` → MAJOR 版本 (v1.0.0 → v2.0.0)
+
+### 詳細文檔
+
+完整的發布系統文檔請查閱 [CLAUDE.md](CLAUDE.md)
+
+---
+
+## �📚 參考文獻
 
 1. **Schlichting, H. (1979)**. *Boundary-Layer Theory* (7th ed.). McGraw-Hill.
 

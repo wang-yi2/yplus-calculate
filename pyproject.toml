@@ -8,7 +8,7 @@ name = "cfd-y-plus-calculator"
 version = "1.0.0"
 description = "CFD y+ 計算工具 - 用於評估邊界層網格"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "CFD Tools", email = "info@cfdtools.dev"}
