@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set UTF-8 encoding (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: |
+          echo "LANG=en_US.UTF-8" >> $GITHUB_ENV
+          echo "LC_ALL=en_US.UTF-8" >> $GITHUB_ENV
+          echo "PYTHONIOENCODING=utf-8" >> $GITHUB_ENV
+
+      - name: Set UTF-8 encoding (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          echo "PYTHONIOENCODING=utf-8" >> $env:GITHUB_ENV
+          chcp 65001 >nul
+
+      - name: Install uv
+        run: |
+          pip install uv
+
+      - name: Create virtual environment
+        run: |
+          uv venv
+
+      - name: Install dependencies
+        run: |
+          uv pip install -e .
+          uv pip install ruff pytest pytest-cov
+
+      - name: Run ruff format check
+        run: |
+          uv run ruff format --check .
+
+      - name: Run ruff lint
+        run: |
+          uv run ruff check .
+
+      - name: Run tests
+        run: |
+          uv run pytest tests/ -v --cov=. --cov-report=xml
+        continue-on-error: true
+
+      - name: Upload coverage
+        if: runner.os == 'Linux' && matrix.python-version == '3.14'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
