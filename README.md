@@ -1,5 +1,20 @@
 # CFD y+ 計算工具
 
+[![CI Status](https://github.com/wang-yi2/yplus-calculate/workflows/Tests/badge.svg)](https://github.com/wang-yi2/yplus-calculate/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub stars](https://img.shields.io/github/stars/wang-yi2/yplus-calculate.svg?style=social&label=Stars)](https://github.com/wang-yi2/yplus-calculate)
+[![GitHub forks](https://img.shields.io/github/forks/wang-yi2/yplus-calculate.svg?style=social&label=Fork)](https://github.com/wang-yi2/yplus-calculate)
+[![GitHub issues](https://img.shields.io/github/issues/wang-yi2/yplus-calculate.svg)](https://github.com/wang-yi2/yplus-calculate/issues)
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=wang-yi2/yplus-calculate&type=Date)](https://star-history.com/#wang-yi2/yplus-calculate&Date)
+
+---
+
 ## 📋 項目概述
 
 CFD y+ 計算工具是一個基於 PySide6 的圖形化應用程式，用於計算計算流體動力學（CFD）中的無量綱數 **y+（y-plus）**。
